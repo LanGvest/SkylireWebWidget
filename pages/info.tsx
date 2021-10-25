@@ -36,9 +36,13 @@ export default function Info(): CustomElement {
 		<>
 			{appMode === 0 && message && (
 				<div className="last-message-container">
-					<div className="icon">
-						{message.icon && <img src={getIconConstant(message.icon)} alt={message.icon}/>}
-					</div>
+					{
+						Boolean(message.icon) && (
+							<div className="icon">
+								{message.icon && <img src={getIconConstant(message.icon)} alt={message.icon}/>}
+							</div>
+						)
+					}
 					{
 						message.color === "g" ?
 							<h1 className="gold">{message.username}</h1>
