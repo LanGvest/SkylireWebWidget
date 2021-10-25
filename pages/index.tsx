@@ -1,11 +1,11 @@
 import {CustomElement} from "../modules/utils";
-import {getDatabase, ref, onValue, onChildAdded, onChildRemoved, query, limitToLast} from "firebase/database";
+import {getDatabase, ref, onValue, onChildAdded, onChildRemoved, query, limitToLast, Database} from "firebase/database";
 import {useEffect, useState} from "react";
 import React from "react";
 import {getColorConstant, getIconConstant, getMetaWithTime, Message} from "../config";
 import firebaseApp from "../modules/firebase";
 
-const database = getDatabase(firebaseApp);
+const database: Database | null = firebaseApp ? getDatabase(firebaseApp) : null;
 
 function buildItem(messages: Array<Message>, position: number): CustomElement {
 	const prevMessage: Message | null = position > 0 ? messages[position-1] : null;
@@ -42,26 +42,28 @@ export default function Index(): CustomElement {
 	const [list, setList] = useState<Array<Message>>(() => []);
 
 	useEffect(() => {
-		onValue(ref(database, "mode"), snapshot => {
-			setAppMode(() => snapshot.val());
-		});
-		let minTimestamp: number = 0;
-		const messagesQuery = query(ref(database, "messages"), limitToLast(maxDisplayAmount));
-		onChildAdded(messagesQuery, data => {
-			const value = data.val();
-			minTimestamp < value.s && addItem({
-				_key: data.key,
-				color: value.c,
-				email: value.m,
-				icon: value.i,
-				text: value.t,
-				timestamp: minTimestamp = value.s,
-				username: value.n
-			})
-		});
-		onChildRemoved(messagesQuery, data => {
-			data.key && removeItem(data.key);
-		});
+		if(database) {
+			onValue(ref(database, "mode"), snapshot => {
+				setAppMode(() => snapshot.val());
+			});
+			let minTimestamp: number = 0;
+			const messagesQuery = query(ref(database, "messages"), limitToLast(maxDisplayAmount));
+			onChildAdded(messagesQuery, data => {
+				const value = data.val();
+				minTimestamp < value.s && addItem({
+					_key: data.key,
+					color: value.c,
+					email: value.m,
+					icon: value.i,
+					text: value.t,
+					timestamp: minTimestamp = value.s,
+					username: value.n
+				})
+			});
+			onChildRemoved(messagesQuery, data => {
+				data.key && removeItem(data.key);
+			});
+		}
 	}, []);
 
 	function addItem(item: Message): void {

@@ -1,33 +1,35 @@
 import {CustomElement} from "../modules/utils";
 import React, {useEffect, useState} from "react";
-import {getDatabase, limitToLast, onChildAdded, onValue, query, ref} from "firebase/database";
+import {Database, getDatabase, limitToLast, onChildAdded, onValue, query, ref} from "firebase/database";
 import firebaseApp from "../modules/firebase";
 import {getColorConstant, getIconConstant, getMeta, Message} from "../config";
 
-const database = getDatabase(firebaseApp);
+const database: Database | null = firebaseApp ? getDatabase(firebaseApp) : null;
 
 export default function Info(): CustomElement {
 	const [appMode, setAppMode] = useState<number>(() => 0);
 	const [message, setMessage] = useState<Message|null>(() => null);
 
 	useEffect(() => {
-		onValue(ref(database, "mode"), snapshot => {
-			setAppMode(() => snapshot.val());
-		});
-		const messagesQuery = query(ref(database, "messages"), limitToLast(1));
-		onChildAdded(messagesQuery, data => {
-			const value = data.val();
-			const newMessage: Message = {
-				_key: data.key,
-				color: value.c,
-				email: value.m,
-				icon: value.i,
-				text: value.t,
-				timestamp: value.s,
-				username: value.n
-			}
-			if(!message || getMeta(message) !== getMeta(newMessage)) setMessage(() => newMessage);
-		});
+		if(database) {
+			onValue(ref(database, "mode"), snapshot => {
+				setAppMode(() => snapshot.val());
+			});
+			const messagesQuery = query(ref(database, "messages"), limitToLast(1));
+			onChildAdded(messagesQuery, data => {
+				const value = data.val();
+				const newMessage: Message = {
+					_key: data.key,
+					color: value.c,
+					email: value.m,
+					icon: value.i,
+					text: value.t,
+					timestamp: value.s,
+					username: value.n
+				}
+				if(!message || getMeta(message) !== getMeta(newMessage)) setMessage(() => newMessage);
+			});
+		}
 	}, []);
 
 	return (
