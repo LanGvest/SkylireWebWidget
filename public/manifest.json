@@ -1,8 +1,8 @@
 {
-	"name": "Системный анализ",
-	"short_name": "СА",
-	"theme_color": "#247ee5",
-	"background_color": "#247ee5",
+	"name": "Skylire Live Chat",
+	"short_name": "Skylire",
+	"theme_color": "#7E41FF",
+	"background_color": "#7E41FF",
 	"display": "standalone",
 	"orientation": "any",
 	"start_url": "/",

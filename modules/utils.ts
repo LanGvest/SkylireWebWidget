@@ -3,8 +3,6 @@
 import {Dispatch, SetStateAction} from "react";
 import Config from "../config";
 
-const $cl = console.log;
-
 declare global {
 	interface String {
 		replaceFull(search: Value, to: Value): string
@@ -151,18 +149,6 @@ function unsubscribeFromWindowEvents(): void {
 	Object.keys(events).for(event => events[event].for(callback => window.removeEventListener(event, callback)));
 }
 
-class OutputStream {
-	private _value: string = "";
-
-	get value(): string {
-		return this._value;
-	}
-
-	set value(newValue: string) {
-		this._value += this._value?`\n${newValue}`:newValue;
-	}
-}
-
 export {HashType};
 export {
 	getRandomInt,
@@ -175,8 +161,6 @@ export {
 	isDevelopment,
 	isProduction,
 	subscribeToWindowEvent,
-	unsubscribeFromWindowEvents,
-	OutputStream,
-	$cl
+	unsubscribeFromWindowEvents
 };
 export type {CustomElement, CustomJSX, CustomJSXs, SetState};

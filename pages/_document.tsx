@@ -18,7 +18,7 @@ export default class GrosserDocument extends Document {
 
 	render() {
 		return (
-			<Html lang="en">
+			<Html lang="ru">
 				<Head>
 					<title>{Config.TITLE}</title>
 					<link rel="manifest" href={"/manifest.json"}/>
