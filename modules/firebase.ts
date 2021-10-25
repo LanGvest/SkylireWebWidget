@@ -5,6 +5,6 @@ let firebaseApp: FirebaseApp | null = null;
 console.log("###INFO###", process.env.FB_CONFIG, typeof process.env.FB_CONFIG);
 console.log("###INFO###", process.env.NEXT_PUBLIC_FB_CONFIG, typeof process.env.NEXT_PUBLIC_FB_CONFIG);
 console.log("###INFO###", configValue, typeof configValue);
-if(configValue) firebaseApp = initializeApp(JSON.parse(configValue.replaceAll("'", "\"")));
+if(configValue) firebaseApp = initializeApp(JSON.parse(configValue.replace(/'/g, "\"")));
 
 export default firebaseApp;
