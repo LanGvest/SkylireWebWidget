@@ -15,7 +15,7 @@ function buildItem(messages: Array<Message>, position: number): CustomElement {
 	let hideMeta: boolean = prevMessage ? getMetaWithTime(message) === getMetaWithTime(prevMessage) : false;
 	let hideBottomPadding: boolean = nextMessage ? getMetaWithTime(message) === getMetaWithTime(nextMessage) : true;
 	return (
-		<div key={message._key} className="message" style={{paddingBottom: hideBottomPadding ? "0" : "18px"}}>
+		<div key={message._key} className="message" style={{paddingBottom: hideBottomPadding ? "0" : "var(--margin)"}}>
 			{!hideMeta && (
 				<div>
 					{message.icon && <img src={getIconConstant(message.icon)} alt={message.icon}/>}
