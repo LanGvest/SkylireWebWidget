@@ -185,3 +185,23 @@ main {
 		font-size: calc(var(--scale) * 30px);
 	}
 }
+
+.download-container {
+	height: 100vh;
+	width: 100vw;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	img {
+		height: calc(var(--scale) * 110px);
+		width: calc(var(--scale) * 110px);
+	}
+	h1 {
+		text-align: center;
+		font-size: calc(var(--scale) * 42px);
+		margin-top: calc(var(--scale) * 20px);
+		margin-bottom: calc(var(--scale) * 20px);
+		font-family: "ProductSansBold", sans-serif;
+	}
+}
