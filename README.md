@@ -1,8 +1,14 @@
-# Skylire: Web app
+# Skylire: Web App
 
-``Skylire`` is a platform for real-time streaming messaging.
+``Skylire`` is an example platform for real-time streaming messaging.
 
-You can visit the web app at [this link](https://skylire.langvest.by "Visit site"). You can also download the android app (4.23 MB) from [this link](https://skylire.langvest.by/app "Download app").
+## Demo
+
+You can visit the demo website at [this link](https://skylire.langvest.by "Visit site").
+
+## Download
+
+You can also download the android app (4.23 MB) from [this link](https://skylire.langvest.by/app "Download app") to get more capabilities.
 
 ## Technologies used
 
