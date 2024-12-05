@@ -1,20 +1,21 @@
-# Skylire: Web App
+# Skylire Web Widget
 
-``Skylire`` is an example platform for real-time streaming messaging.
+`Skylire` is an example platform to demonstrate how real-time streaming messaging works.
 
 ## Demo
 
-You can visit the demo website at [this link](https://skylire.langvest.by "Visit site").
+You can check out the web widget of the chat at [this link](https://skylire.langvest.by "Visit site").
+
+> This web widget can be embedded into any video streaming (e.g. YouTube or Twitch) using OBS or any other program that supports embedding web widgets by URL.
 
 ## Download
 
-You can also download the android app (4.23 MB) from [this link](https://skylire.langvest.by/app "Download app") to get more capabilities.
+You can also download the latest version of the android app (4.23 MB) from [this link](https://skylire.langvest.by/app "Download app").
 
 ## Technologies used
 
-1. TypeScript & TSX ``-D typescript``
-2. Node.js (under the hood) ``-D @types/node``
-3. React.js ``react`` ``react-dom`` ``-D @types/react``
-4. Next.js ``next``
-5. Sass ``-D sass``
-6. Firebase ``firebase`` ``-D @types/firebase``
+- TypeScript `-D typescript@4.2.3`
+- React `react@17.0.1` `react-dom@17.0.1`
+- Next `next@11.1.2`
+- Sass `-D sass@1.32.8`
+- Firebase `firebase@9.1.3`
